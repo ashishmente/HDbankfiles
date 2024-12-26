@@ -1,0 +1,57 @@
+package com.example.emailtest;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import java.util.Properties;
+
+@SpringBootApplication
+public class EmailtestApplication implements CommandLineRunner {
+	
+	
+    public static void main(String[] args) {
+        SpringApplication.run(EmailtestApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) {
+        sendEmail();
+    }
+
+    private void sendEmail() {
+        // Set up the email sender
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("ashishmangalmente@gmail.com"); // Replace with your email
+        mailSender.setPassword("cmzj waeq rrut swbq"); // Replace with your password
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        // Compose the email
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+            helper.setFrom("ashishmangalmente@gmail.com"); // Replace with your email
+            helper.setTo("ashishmangalweb@gmail.com"); // Replace with recipient's email
+            helper.setSubject("Test Email");
+            helper.setText("Hello", true); // Sending "Hello" as the email body
+
+            // Send the email
+            mailSender.send(message);
+            System.out.println("Email sent successfully!");
+        } catch (MessagingException e) {
+            System.err.println("Error sending email: " + e.getMessage());
+        }
+    }
+}
