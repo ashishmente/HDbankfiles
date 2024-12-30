@@ -1,0 +1,522 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
+import java.io.*;
+import java.security.*;
+import java.security.cert.X509Certificate;
+import java.util.*;
+import javax.crypto.*;
+import javax.crypto.spec.*;
+import java.nio.charset.*;
+import java.net.*;
+import javax.net.ssl.*;
+import java.nio.file.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.StringWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.net.ssl.HttpsURLConnection;
+import org.apache.camel.Exchange;
+import java.io.StringReader;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import java.util.Map;
+import java.util.HashMap;
+import java.io.File;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import java.io.FileReader;
+import java.util.Iterator;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.apache.camel.Exchange;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.*;
+import java.io.IOException;
+import java.util.Date;
+
+import java.io.FileReader;
+import java.util.Iterator;
+import java.text.*;
+import javax.xml.bind.DatatypeConverter;
+import java.nio.charset.Charset;
+import java.util.Base64.*;
+import java.nio.charset.StandardCharsets;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.MailException;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+
+public class actionSFM
+{
+	
+
+  
+	
+	private static void sendEmail(String toEmail, String subject, String body) throws MailException {
+		
+		       JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("ashishmangalmente@gmail.com"); // Replace with your email
+        mailSender.setPassword("cmzj waeq rrut swbq"); // Replace with your password
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true")
+		
+
+
+        try {
+			        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom("ashishmangalmente@gmail.com"); // Sender email address
+            helper.setTo(toEmail); // Recipient email address
+            helper.setSubject(subject); // Subject of the email
+            helper.setText(body); // Body of the email
+
+            mailSender.send(message); // Send the email
+            System.out.println("Email sent successfully to: " + toEmail);
+        } catch (MessagingException e) {
+            System.err.println("Error sending email: " + e.getMessage());
+        }
+    }
+	
+	
+	public static void AccountBlock(String entityID) throws IOException {
+		// Database connection parameters
+		String dbUrl = "jdbc:oracle:thin:@//sfmserver.demo.sas.com:1521/SOR.DEMO.SAS.COM"; // Replace with your Oracle DB details
+		String dbUser = "fcmcore"; // Replace with your database username
+		String dbPassword = "Orion123"; // Replace with your database password
+
+		// Validate entityID
+		if (entityID == null || entityID.isEmpty()) {
+			throw new IllegalArgumentException("Entity ID cannot be null or empty");
+		}
+
+		String updateQuery = "UPDATE FCM_ACCOUNT SET ACCOUNT_STATUS = 'Inactive' WHERE ACCOUNT_IBAN_NUM = '" + entityID + "'";
+
+		Connection connection = null;
+		Statement statement = null;
+
+		try {
+			// Establish database connection
+			connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
+			// Create statement
+			statement = connection.createStatement();
+
+			// Execute the query
+			int rowsUpdated = statement.executeUpdate(updateQuery);
+
+			// Check if any row was updated
+			if (rowsUpdated > 0) {
+				System.out.println("Successfully updated ACCOUNT_STATUS to Inactive for ACCOUNT_IBAN_NUM: " + entityID);
+			} else {
+				throw new RuntimeException("No account found for ACCOUNT_IBAN_NUM: " + entityID);
+			}
+		} catch (SQLException e) {
+			throw new IOException("Database error occurred", e);
+		} catch (Exception e) {
+			throw new IOException("An error occurred while processing the AccountBlock method", e);
+		} finally {
+			// Close resources in the finally block
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close statement: " + e.getMessage());
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close connection: " + e.getMessage());
+				}
+			}
+		}
+	}
+
+
+	
+		public static void CardBlock(String entityID) throws IOException {
+		// Database connection parameters
+		String dbUrl = "jdbc:oracle:thin:@//sfmserver.demo.sas.com:1521/SOR.DEMO.SAS.COM"; // Replace with your Oracle DB details
+		String dbUser = "fcmcore"; // Replace with your database username
+		String dbPassword = "Orion123"; // Replace with your database password
+
+		// Validate entityID
+		if (entityID == null || entityID.isEmpty()) {
+			throw new IllegalArgumentException("Entity ID cannot be null or empty");
+		}
+
+		String updateQuery = "UPDATE FCM_CARD SET ONLINE_AUTHORIZATION_CARD_STATUS = 'INACTIVE' WHERE CARD_NUM = '" + entityID + "'";
+
+		Connection connection = null;
+		Statement statement = null;
+
+		try {
+			// Establish database connection
+			connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
+			// Create statement
+			statement = connection.createStatement();
+
+			// Execute the query
+			int rowsUpdated = statement.executeUpdate(updateQuery);
+
+			// Check if any row was updated
+			if (rowsUpdated > 0) {
+				System.out.println("Successfully updated ONLINE_AUTHORIZATION_CARD_STATUS to Inactive for CARD_NUM: " + entityID);
+			} else {
+				throw new RuntimeException("No card found for CARD_NUM: " + entityID);
+			}
+		} catch (SQLException e) {
+			throw new IOException("Database error occurred", e);
+		} catch (Exception e) {
+			throw new IOException("An error occurred while processing the CardBlock method", e);
+		} finally {
+			// Close resources in the finally block
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close statement: " + e.getMessage());
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close connection: " + e.getMessage());
+				}
+			}
+		}
+	}
+
+
+	
+
+    public void actionSend (Exchange exchange) throws IndexOutOfBoundsException
+	{
+	
+	    //String actionResponse = "";
+		String textXml = exchange.getIn().getBody();
+		String[] splitXml = textXml.split("urn:SASFraudManagement:ECMI_1_3\\\">", 2);
+		String xmlPayload = "<ecmi>";
+		xmlPayload = xmlPayload+splitXml[1];
+
+
+				System.out.println(xmlPayload);
+
+		Document doc = convertStringToXMLDocument(xmlPayload);
+
+		//Verify XML document is build correctly
+		System.out.println(doc.getFirstChild().getNodeName());
+
+		String entityID="";
+		String systemBlockCode="";
+
+		//DateFormat sas_dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		//DateFormat sas_d = new SimpleDateFormat("yyyy-MM-dd");
+		//DateFormat sas_t = new SimpleDateFormat("HH:mm:ss.S");
+		//sas_dt.setTimeZone(TimeZone.getTimeZone("Asia/Dubai"));
+		try
+		{
+
+			doc.getDocumentElement().normalize();
+			NodeList nList = doc.getElementsByTagName("ecmi");
+			Node nNode = nList.item(0);
+
+			System.out.println(nNode);
+			Element eElement = (Element) nNode;
+			/*username = (eElement.getElementsByTagName("username")).item(0).getTextContent();
+			event = (eElement.getElementsByTagName("event")).item(0).getTextContent();
+			id = (eElement.getElementsByTagName("id")).item(0).getTextContent();
+			type = (eElement.getElementsByTagName("type")).item(0).getTextContent();
+
+			createTimestamp = (eElement.getElementsByTagName("createTimestamp")).item(0).getTextContent();
+			entityID = (eElement.getElementsByTagName("entityID")).item(0).getTextContent();
+			contactID = (eElement.getElementsByTagName("contactID")).item(0).getTextContent();
+			contactType = (eElement.getElementsByTagName("contactType")).item(0).getTextContent();
+			multiOrg = (eElement.getElementsByTagName("multiOrg")).item(0).getTextContent();
+			strategyName = (eElement.getElementsByTagName("strategyName")).item(0).getTextContent();
+			queueID = (eElement.getElementsByTagName("queueID")).item(0).getTextContent();
+			queueName = (eElement.getElementsByTagName("queueName")).item(0).getTextContent();
+			//ruleID = (eElement.getElementsByTagName("ruleID")).item(0).getTextContent();
+			//ruleName = (eElement.getElementsByTagName("ruleName")).item(0).getTextContent();
+			//alertReason = (eElement.getElementsByTagName("alertReason")).item(0).getTextContent();
+			actionDate = (eElement.getElementsByTagName("actionDate")).item(0).getTextContent();
+			actionTime = (eElement.getElementsByTagName("actionTime")).item(0).getTextContent();
+			alertActionID = (eElement.getElementsByTagName("alertActionID")).item(0).getTextContent();
+			callResult = (eElement.getElementsByTagName("callResult")).item(0).getTextContent();
+			//fraudType = (eElement.getElementsByTagName("fraudType")).item(0).getTextContent();
+			memoText = (eElement.getElementsByTagName("memoText")).item(0).getTextContent();
+			//merchantCountryNames = (eElement.getElementsByTagName("merchantCountryNames")).item(0).getTextContent();
+			//notes = (eElement.getElementsByTagName("notes")).item(0).getTextContent();
+			*/
+			entityID = (eElement.getElementsByTagName("entityID")).item(0).getTextContent();
+			systemBlockCode = (eElement.getElementsByTagName("systemBlockCode")).item(0).getTextContent();
+			System.out.println(systemBlockCode);
+			
+
+			//System.out.println("Inside SFM Action Integration");
+			//System.out.println(event);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+			System.out.println("Before SFM SMS Integration "+systemBlockCode);
+
+			//System.out.println("Before SFM SMS Integration "+callResult);
+		
+		/* Calling sms Integration method to get more details to send SMS communication */
+		//actionSFM.smsIntegration(contactID, systemBlockCode, callResult, id, alertActionID, username, createTimestamp); 
+		
+		// 1 case
+		if(systemBlockCode.equals("BACC"))  // Block account
+		{
+			actionSFM.AccountBlock(entityID);
+		}
+		
+		// 2 case
+	  if (systemBlockCode.equals("BACCE")) { // Block account and send email
+		actionSFM.AccountBlock(entityID);
+
+		// Database connection parameters
+		String dbUrl = "jdbc:oracle:thin:@//sfmserver.demo.sas.com:1521/SOR.DEMO.SAS.COM"; // Replace with your Oracle DB details
+		String dbUser = "fcmcore"; // Replace with your database username
+		String dbPassword = "Orion123"; // Replace with your database password
+
+		// Initialize variables
+		String email = null;
+		String subject = null;
+		String message = null;
+
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+			// Establish connection
+			connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
+			// Create statement
+			statement = connection.createStatement();
+
+			// Execute query to fetch email
+			resultSet = statement.executeQuery("SELECT PRIMARY_EMAIL FROM FCM_ACCOUNT WHERE ACCOUNT_IBAN_NUM = '" + entityID + "'");
+
+			// Retrieve the customer email from the result set
+			if (resultSet.next()) {
+				email = resultSet.getString("PRIMARY_EMAIL");
+				System.out.println("Customer Email: " + email);
+			} else {
+				throw new RuntimeException("No customer email found for ACCOUNT_IBAN_NUM: " + entityID);
+			}
+
+			// Compose email subject and message
+			subject = "Important Notice: Your HD Bank Account Access Restricted";
+			message = "Your account " + entityID + " has been temporarily blocked due to security concerns. " +
+					  "To ensure the security of your account and to assist you further, we kindly request you to contact our support team at your earliest convenience.";
+
+			// Send email
+			actionSFM.sendEmail(email, subject, message);
+
+		} catch (SQLException e) {
+			throw new IOException("Database error occurred", e);
+		} catch (Exception e) {
+			throw new IOException("An error occurred while processing the account block and email send operation", e);
+		} finally {
+			// Close resources in the finally block
+			if (resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close resultSet: " + e.getMessage());
+				}
+			}
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close statement: " + e.getMessage());
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close connection: " + e.getMessage());
+				}
+			}
+		}
+	}
+	
+
+
+			
+			
+			
+		// 3 case	
+		if(systemBlockCode.equals("BCA"))   // Block card
+		{
+			actionSFM.CardBlock(entityID);
+		}
+			
+			
+		// 4 case
+		if (systemBlockCode.equals("BCAE")) {  // Block card and send email
+		actionSFM.CardBlock(entityID);
+
+		// Database connection parameters
+		String dbUrl = "jdbc:oracle:thin:@//sfmserver.demo.sas.com:1521/SOR.DEMO.SAS.COM"; // Replace with your Oracle DB details
+		String dbUser = "fcmcore"; // Replace with your database username
+		String dbPassword = "Orion123"; // Replace with your database password
+
+		// Initialize variables
+		String email = null;
+		String subject = null;
+		String message = null;
+
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+			// Establish connection
+			connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
+			// Create statement
+			statement = connection.createStatement();
+
+			// Execute query to fetch email
+			resultSet = statement.executeQuery("SELECT EMAIL_ADDRESS_DEFAULT FROM FCM_CARD WHERE CARD_NUM = '" + entityID + "'");
+
+			// Retrieve the customer email from the result set
+			if (resultSet.next()) {
+				email = resultSet.getString("EMAIL_ADDRESS_DEFAULT");
+				System.out.println("Cardholder Email: " + email);
+			} else {
+				throw new RuntimeException("No email found for CARD_NUM: " + entityID);
+			}
+
+			// Compose email subject and message
+			subject = "Important Notice: Your HD Bank Card Access Restricted";
+			message = "Your Card " + entityID + " has been temporarily blocked due to security concerns. " +
+					  "To ensure the security of your account and to assist you further, we kindly request you to contact our support team at your earliest convenience.";
+
+			// Send email
+			sendEmail(email, subject, message);
+
+		} catch (SQLException e) {
+			throw new IOException("Database error occurred", e);
+		} catch (Exception e) {
+			
+			throw new IOException("An error occurred while processing the card block and email send operation " + e.getMessage());
+		} finally {
+			// Close resources in the finally block
+			if (resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close resultSet: " + e.getMessage());
+				}
+			}
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close statement: " + e.getMessage());
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.err.println("Failed to close connection: " + e.getMessage());
+				}
+			}
+		}
+	}
+	}
+
+	
+	private static Document convertStringToXMLDocument(String xmlString)
+	{
+		//Parser that produces DOM object trees from XML content
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+		//API to obtain DOM Document instance
+		DocumentBuilder builder = null;
+		try
+		{
+			//Create DocumentBuilder with default configuration
+			builder = factory.newDocumentBuilder();
+
+			//Parse the content to Document object
+			Document doc = builder.parse(new InputSource(new StringReader(xmlString)));
+			return doc;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}
