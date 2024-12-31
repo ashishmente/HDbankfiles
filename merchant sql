@@ -1,0 +1,26 @@
+INSERT INTO FCM_MERCHANT (
+    MERCHANT_NUMBER, 
+    COMMERCIAL_NAME, 
+    TYPE_OF_BUSINESS, 
+    NATURE_OF_BUSINESS, 
+    HIGH_RISK_FLAG, 
+    KEY_ACCOUNT_FLAG_VIP, 
+    CONTACT_PERSON, 
+    TELEPHONE_NUMBER, 
+    CITY_NAME, 
+    ACCOUNT_NUMBER, 
+    ACCOUNT_NAME, 
+    MERCHANT_ACCOUNT_CURRENCY, 
+    BANK_SWIFT_CODE, 
+    MERCHANT_ACCOUNT_PROFILE, 
+    MCC
+)
+VALUES
+('MER00001', 'MegaMart Groceries', 'Retail', 'Supermarket', 'No', 'No', 'Mike Thompson', '+1-555-123-4567', 'New York', 'US01MEGA123456', 'MegaMart Inc.', 'USD', 'ABCDUS33', 'Basic', 2342),
+('MER00002', 'WorldElectronics', 'Retail', 'Electronics', 'No', 'Yes', 'Sarah White', '+1-555-234-5678', 'Los Angeles', 'US02WORL234567', 'World Electronics', 'USD', 'EFGHUS22', 'Premium', 3321),
+('MER00003', 'TravelMax', 'Services', 'Travel Agency', 'No', 'No', 'Karen Martinez', '+1-555-345-6789', 'Miami', 'US03TRAV345678', 'TravelMax LLC', 'USD', 'IJKLUS11', 'Standard', 1242),
+('MER00004', 'CityBanking Partners', 'Financial', 'Banking Services', 'Yes', 'Yes', 'James Taylor', '+1-555-456-7890', 'San Francisco', 'US04CITY456789', 'CityBank Partners', 'USD', 'MNOPUS44', 'Premium', 7764),
+('MER00005', 'FashionHub', 'Retail', 'Clothing & Apparel', 'Yes', 'No', 'Emily Clark', '+1-555-567-8901', 'Chicago', 'US05FASH567890', 'FashionHub Corp', 'USD', 'QRSTUS55', 'Basic', 9876),
+('MER00006', 'SkyHigh Airlines', 'Services', 'Airline Services', 'Yes', 'Yes', 'David Lee', '+1-555-678-9012', 'Seattle', 'US06SKYH678901', 'SkyHigh Airlines', 'USD', 'UVWXUS66', 'Premium', 8876),
+('MER00007', 'HealthFirst Medical', 'Healthcare', 'Hospital Services', 'Yes', 'No', 'Sofia Garcia', '+1-555-789-0123', 'Houston', 'US07HEAL789012', 'HealthFirst Medical', 'USD', 'YZABUS77', 'Standard', 3364),
+('MER00008', 'GourmetDelights', 'Retail', 'Restaurant', 'Yes', 'Yes', 'Raj Patel', '+1-555-890-1234', 'Dallas', 'US08GOUR890123', 'GourmetDelights', 'USD', 'CDEFUS88', 'Premium', 2232);
