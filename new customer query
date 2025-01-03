@@ -1,0 +1,73 @@
+INSERT INTO Customers (
+
+    CUSTOMER_ID, FIRSTNAME, LASTNAME, ADDRESSLINE1, CITY, POSTALCODE, COUNTRY, 
+
+    MOBILEPHONE1, EMAIL, MARITALSTATUS, CUSTOMERBRANCH, PEP_FLAG, NON_RESIDENT_FLAG, 
+
+    CUSTMONTHLYINCOME, NATIONALITY, GENDER, ADDRLSTUPDT, HOMEPHONE1LSTUPDT, MOBILEPHONE1LSTUPDT, 
+
+    WORKPHONE1LSTUPDT, EMAILLSTUPDT, DATEOFBIRTHLSTUPDT, OCCUPATION
+
+) VALUES
+
+('C00001', 'John', 'Smith', '123 Oak Street', 'New York', '10001', 'USA', '+1-212-555-1234', 'john.smith@example.com', 'Single', 'Manhattan', 'N', 'N', 7500, 'USA', 'M', '2024-12-15', '2024-12-14', '2024-12-15', '2024-12-12', '2024-12-10', '2024-12-13', 'Software Engineer'),
+
+('C00002', 'Emily', 'Clark', '456 Maple Avenue', 'San Diego', '92101', 'USA', '+1-619-555-5678', 'emily.clark@example.com', 'Married', 'San Diego', 'N', 'N', 9500, 'USA', 'F', '2024-12-14', '2024-12-14', '2024-12-13', '2024-12-10', '2024-12-12', '2024-12-11', 'Financial Analyst'),
+
+('C00003', 'Raj', 'Patel', '789 Pine Street', 'Chicago', '60601', 'USA', '+1-312-555-7890', 'raj.patel@example.com', 'Single', 'Chicago', 'N', 'Y', 6500, 'India', 'M', '2024-12-12', '2024-12-10', '2024-12-12', '2024-12-09', '2024-12-08', '2024-12-08', 'Data Scientist'),
+
+('C00004', 'Sofia', 'Martinez', '987 Birch Blvd', 'Miami', '33101', 'USA', '+1-305-555-9876', 'sofia.martinez@example.com', 'Divorced', 'Miami', 'Y', 'N', 8300, 'Spain', 'F', '2024-12-13', '2024-12-13', '2024-12-12', '2024-12-11', '2024-12-10', '2024-12-09', 'Marketing Manager'),
+
+('C00005', 'Ahmed', 'Ali', '654 Cedar Lane', 'Houston', '77001', 'USA', '+1-713-555-4321', 'ahmed.ali@example.com', 'Married', 'Houston', 'N', 'Y', 7800, 'Egypt', 'M', '2024-12-14', '2024-12-12', '2024-12-14', '2024-12-10', '2024-12-09', '2024-12-08', 'Civil Engineer'),
+
+('C00006', 'Maria', 'Gomez', '321 Elm Avenue', 'Los Angeles', '90001', 'USA', '+1-213-555-1234', 'maria.gomez@example.com', 'Single', 'Los Angeles', 'N', 'N', 6900, 'Mexico', 'F', '2024-12-13', '2024-12-13', '2024-12-11', '2024-12-08', '2024-12-07', '2024-12-06', 'Teacher'),
+
+('C00007', 'Peter', 'Adams', '654 Maple Street', 'Austin', '73301', 'USA', '+1-512-555-4322', 'peter.adams@example.com', 'Single', 'Austin', 'N', 'N', 8200, 'USA', 'M', '2024-12-10', '2024-12-09', '2024-12-10', '2024-12-08', '2024-12-07', '2024-12-06', 'Architect'),
+
+('C00008', 'Laura', 'Green', '123 Palm Avenue', 'San Antonio', '78201', 'USA', '+1-210-555-1235', 'laura.green@example.com', 'Married', 'San Antonio', 'N', 'Y', 9100, 'Canada', 'F', '2024-12-11', '2024-12-11', '2024-12-10', '2024-12-09', '2024-12-08', '2024-12-07', 'Physician'),
+
+('C00009', 'David', 'Johnson', '987 Oak Lane', 'Dallas', '75201', 'USA', '+1-214-555-9877', 'david.johnson@example.com', 'Married', 'Dallas', 'N', 'N', 7700, 'USA', 'M', '2024-12-14', '2024-12-14', '2024-12-13', '2024-12-12', '2024-12-11', '2024-12-10', 'Lawyer'),
+
+('C00010', 'Sarah', 'White', '456 Pine Street', 'Boston', '2101', 'USA', '+1-617-555-1236', 'sarah.white@example.com', 'Single', 'Boston', 'N', 'N', 8600, 'USA', 'F', '2024-12-15', '2024-12-14', '2024-12-15', '2024-12-12', '2024-12-10', '2024-12-09', 'Graphic Designer'),
+
+('C00011', 'Michael', 'Brown', '654 Oak Drive', 'Phoenix', '85001', 'USA', '+1-602-555-4323', 'michael.brown@example.com', 'Married', 'Phoenix', 'Y', 'Y', 9300, 'USA', 'M', '2024-12-12', '2024-12-11', '2024-12-12', '2024-12-10', '2024-12-08', '2024-12-07', 'CEO'),
+
+('C00012', 'Olivia', 'Walker', '789 Cedar Street', 'San Jose', '95101', 'USA', '+1-408-555-4324', 'olivia.walker@example.com', 'Single', 'San Jose', 'N', 'N', 6400, 'USA', 'F', '2024-12-14', '2024-12-13', '2024-12-14', '2024-12-12', '2024-12-11', '2024-12-10', 'Data Analyst'),
+
+('C00013', 'Ethan', 'Scott', '123 Elm Road', 'Seattle', '98101', 'USA', '+1-206-555-4325', 'ethan.scott@example.com', 'Married', 'Seattle', 'N', 'N', 7800, 'USA', 'M', '2024-12-15', '2024-12-14', '2024-12-15', '2024-12-13', '2024-12-12', '2024-12-11', 'Accountant'),
+
+('C00014', 'Chloe', 'King', '654 Cedar Boulevard', 'Denver', '80201', 'USA', '+1-303-555-4326', 'chloe.king@example.com', 'Divorced', 'Denver', 'Y', 'Y', 7100, 'USA', 'F', '2024-12-12', '2024-12-11', '2024-12-12', '2024-12-10', '2024-12-09', '2024-12-08', 'Project Manager'),
+
+('C00015', 'William', 'Hall', '123 Oak Avenue', 'Las Vegas', '89101', 'USA', '+1-702-555-4327', 'william.hall@example.com', 'Single', 'Las Vegas', 'N', 'N', 8000, 'USA', 'M', '2024-12-12', '2024-12-11', '2024-12-12', '2024-12-10', '2024-12-08', '2024-12-07', 'CEO'),
+
+('C00016', 'James', 'Brown', '987 Oak Drive', 'Seattle', '98101', 'USA', '+1-206-555-9876', 'james.brown@example.com', 'Married', 'Seattle', 'N', 'N', 7800, 'USA', 'M', '2024-12-13', '2024-12-12', '2024-12-13', '2024-12-11', '2024-12-10', '2024-12-09', 'Business Analyst'),
+
+('C00017', 'Hannah', 'Lee', '789 Birch Avenue', 'San Francisco', '94101', 'USA', '+1-415-555-7890', 'hannah.lee@example.com', 'Divorced', 'San Francisco', 'Y', 'N', 8300, 'Korea', 'F', '2024-12-14', '2024-12-13', '2024-12-12', '2024-12-10', '2024-12-11', '2024-12-09', 'Product Manager'),
+
+('C00018', 'Isaac', 'Williams', '321 Maple Street', 'Denver', '80201', 'USA', '+1-720-555-1234', 'isaac.williams@example.com', 'Single', 'Denver', 'N', 'N', 7500, 'USA', 'M', '2024-12-15', '2024-12-14', '2024-12-13', '2024-12-12', '2024-12-11', '2024-12-10', 'Engineer'),
+
+('C00019', 'Charlotte', 'Davis', '654 Oak Lane', 'Chicago', '60601', 'USA', '+1-312-555-6543', 'charlotte.davis@example.com', 'Married', 'Chicago', 'N', 'Y', 9200, 'USA', 'F', '2024-12-13', '2024-12-13', '2024-12-12', '2024-12-11', '2024-12-10', '2024-12-09', 'Lawyer'),
+
+('C00020', 'Samuel', 'Hernandez', '123 Birch Lane', 'Austin', '73301', 'USA', '+1-512-555-9877', 'samuel.hernandez@example.com', 'Single', 'Austin', 'N', 'Y', 7000, 'Mexico', 'M', '2024-12-14', '2024-12-13', '2024-12-14', '2024-12-12', '2024-12-11', '2024-12-10', 'Technician'),
+
+('C00021', 'Zoe', 'Martinez', '987 Palm Street', 'Houston', '77001', 'USA', '+1-713-555-8765', 'zoe.martinez@example.com', 'Divorced', 'Houston', 'Y', 'N', 8400, 'USA', 'F', '2024-12-13', '2024-12-12', '2024-12-13', '2024-12-11', '2024-12-10', '2024-12-09', 'Consultant'),
+
+('C00022', 'Liam', 'Lopez', '654 Pine Road', 'Los Angeles', '90001', 'USA', '+1-213-555-2345', 'liam.lopez@example.com', 'Single', 'Los Angeles', 'N', 'N', 6900, 'USA', 'M', '2024-12-11', '2024-12-10', '2024-12-11', '2024-12-09', '2024-12-08', '2024-12-07', 'Teacher'),
+
+('C00023', 'Victoria', 'Gonzalez', '123 Oak Boulevard', 'Dallas', '75201', 'USA', '+1-214-555-3456', 'victoria.gonzalez@example.com', 'Married', 'Dallas', 'N', 'N', 7600, 'USA', 'F', '2024-12-14', '2024-12-13', '2024-12-14', '2024-12-12', '2024-12-11', '2024-12-10', 'Nurse'),
+
+('C00024', 'Benjamin', 'Scott', '789 Cedar Avenue', 'Miami', '33101', 'USA', '+1-305-555-6543', 'benjamin.scott@example.com', 'Single', 'Miami', 'N', 'N', 7800, 'USA', 'M', '2024-12-12', '2024-12-10', '2024-12-12', '2024-12-09', '2024-12-08', '2024-12-07', 'Physician'),
+
+('C00025', 'Isabella', 'Taylor', '456 Elm Street', 'San Diego', '92101', 'USA', '+1-619-555-8764', 'isabella.taylor@example.com', 'Divorced', 'San Diego', 'N', 'Y', 8200, 'USA', 'F', '2024-12-10', '2024-12-09', '2024-12-10', '2024-12-08', '2024-12-07', '2024-12-06', 'Architect'),
+
+('C00026', 'Alexander', 'Wilson', '321 Birch Avenue', 'New York', '10001', 'USA', '+1-212-555-2346', 'alexander.wilson@example.com', 'Single', 'New York', 'Y', 'N', 9500, 'USA', 'M', '2024-12-11', '2024-12-10', '2024-12-11', '2024-12-09', '2024-12-08', '2024-12-07', 'Scientist'),
+
+('C00027', 'Charlotte', 'Perez', '654 Palm Street', 'Chicago', '60601', 'USA', '+1-312-555-5432', 'charlotte.perez@example.com', 'Married', 'Chicago', 'N', 'Y', 8300, 'USA', 'F', '2024-12-13', '2024-12-12', '2024-12-13', '2024-12-11', '2024-12-10', '2024-12-09', 'Accountant'),
+
+('C00028', 'Daniel', 'Roberts', '123 Pine Road', 'Houston', '77001', 'USA', '+1-713-555-9878', 'daniel.roberts@example.com', 'Single', 'Houston', 'N', 'Y', 7500, 'USA', 'M', '2024-12-14', '2024-12-13', '2024-12-14', '2024-12-12', '2024-12-11', '2024-12-10', 'Manager'),
+
+('C00029', 'Grace', 'Walker', '789 Oak Boulevard', 'San Diego', '92101', 'USA', '+1-619-555-2347', 'grace.walker@example.com', 'Divorced', 'San Diego', 'N', 'N', 8000, 'Canada', 'F', '2024-12-13', '2024-12-12', '2024-12-13', '2024-12-11', '2024-12-10', '2024-12-09', 'Consultant'),
+
+('C00030', 'Henry', 'Adams', '456 Maple Lane', 'Tampa', '33601', 'USA', '+1-813-555-1234', 'henry.adams@example.com', 'Married', 'Tampa', 'N', 'N', 8600, 'USA', 'M', '2024-12-14', '2024-12-13', '2024-12-12', '2024-12-11', '2024-12-10', '2024-12-09', 'Lawyer');
+
+ 
